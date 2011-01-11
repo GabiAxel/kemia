@@ -28,24 +28,21 @@ goog.require('goog.math.Vec2');
  *            opt_target target point coordinates for arrow
  * @param {kemia.model.Arrow.STYLE=}
  *            opt_style
- * @param {string=}
- *            opt_reagents_text
- * @param {string=}
- *            opt_conditions_text
+ * @param {kemia.model.Reaction}
+ *            opt_reaction the reaction the arrow is a part of
  * @constructor
  */
 
-kemia.model.Arrow = function(opt_source, opt_target, opt_style,
-		opt_reagents_text, opt_conditions_text) {
+kemia.model.Arrow = function(opt_source, opt_target, opt_style, opt_reaction) {	
 	this.source = goog.isDef(opt_source) ? opt_source
 			: new goog.math.Coordinate(10, 0);
 	this.target = goog.isDef(opt_target) ? opt_target : goog.math.Coordinate
 			.sum(this.source, new goog.math.Coordinate(2, 0));
 	this.style = goog.isDef(opt_style) ? opt_style
 			: kemia.model.Arrow.STYLES.FORWARD;
-	this.reagents_text = goog.isDef(opt_reagents_text) ? opt_reagents_text : "";
-	this.conditions_text = goog.isDef(opt_conditions_text) ? opt_conditions_text
-			: "";
+			
+			/** @type {kemia.model.Reaction} */
+	this.reaction = opt_reaction;
 };
 
 /**
@@ -94,27 +91,27 @@ kemia.model.Arrow.prototype.getOrientation = function(point){
 		return kemia.model.Arrow.ORIENTATION.BEHIND;
 	}
 }
-/**
- * @param{string} text
- */
-kemia.model.Arrow.prototype.setReagentsText = function (text){
-	if(text){
-		this.reagents_text = text;
-	} else {
-		this.reagents_text = ''
-	}
-}
+// /**
+//  * @param{string} text
+//  */
+// kemia.model.Arrow.prototype.setReagentsText = function (text){
+// 	if(text){
+// 		this.reaction.getRegentsText()reagents_text = text;
+// 	} else {
+// 		this.reagents_text = ''
+// 	}
+// }
 
-/**
- * @param{string} text
- */
-kemia.model.Arrow.prototype.setConditionsText = function(text) {
-	if(text){
-		this.conditions_text = text;
-	} else {
-		this.conditions_text = '';
-	}
-}
+// /**
+//  * @param{string} text
+//  */
+// kemia.model.Arrow.prototype.setConditionsText = function(text) {
+// 	if(text){
+// 		this.conditions_text = text;
+// 	} else {
+// 		this.conditions_text = '';
+// 	}
+// }
 
 kemia.model.Arrow.prototype.toString = function() {
 	return 'kemia.model.Arrow ' + this.source.toString() + " " + this.target.toString();

@@ -1,4 +1,4 @@
-goog.provide('kemia.controller.ReactioneEditorDemo');
+goog.provide('kemia.controller.ReactionEditorDemo');
 goog.require('goog.dom');
 goog.require('kemia.controller.DefaultToolbar');
 goog.require('kemia.controller.ReactionEditor');
@@ -13,11 +13,12 @@ goog.require('kemia.controller.plugins.MoleculeEdit');
 goog.require('kemia.controller.plugins.Move');
 goog.require('kemia.controller.plugins.UndoRedo');
 goog.require('kemia.controller.plugins.Zoom');
+goog.require('kemia.controller.plugins.View');
 goog.require('kemia.io.json');
 
 
 
-kemia.controller.ReactioneEditorDemo.initPage = function() {
+kemia.controller.ReactionEditorDemo.initPage = function() {
 	var c = new goog.debug.Console();
 	c.setCapturing(true);
 	var logger = goog.debug.Logger.getLogger('kemia.controller.ReactionEditorDemo');
@@ -47,6 +48,7 @@ kemia.controller.ReactioneEditorDemo.initPage = function() {
 	editor.registerPlugin(new kemia.controller.plugins.BondEdit());
 	editor.registerPlugin(new kemia.controller.plugins.ArrowPlusEdit());
 	editor.registerPlugin(new kemia.controller.plugins.MoleculeEdit());
+	editor.registerPlugin(new kemia.controller.plugins.View());
 
 	var toolbarController = new kemia.controller.ToolbarController(editor,
 			toolbar);
@@ -55,4 +57,4 @@ kemia.controller.ReactioneEditorDemo.initPage = function() {
 	editor.setModels([model]);
 }
 
-goog.exportSymbol('kemia.controller.ReactioneEditorDemo.initPage', kemia.controller.ReactioneEditorDemo.initPage);
+goog.exportSymbol('kemia.controller.ReactionEditorDemo.initPage', kemia.controller.ReactionEditorDemo.initPage);

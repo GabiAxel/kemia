@@ -77,6 +77,9 @@ kemia.controller.ToolbarController = function(editor, toolbar) {
 			kemia.controller.ReactionEditor.EventType.COMMAND_VALUE_CHANGE,
 			this.updateToolbar).listen(this.toolbar_,
 			goog.ui.Component.EventType.ACTION, this.handleAction);
+			
+	this.updateToolbarFromState(
+		this.editor_.queryCommandValue(this.queryCommands_));
 };
 goog.inherits(kemia.controller.ToolbarController, goog.events.EventTarget);
 

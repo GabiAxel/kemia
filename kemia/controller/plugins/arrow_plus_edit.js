@@ -91,8 +91,11 @@ kemia.controller.plugins.ArrowPlusEdit.prototype.handleMouseDown = function(e) {
 				.createInverse();
 		var coords = trans.transformCoords([new goog.math.Coordinate(
 				e.offsetX, e.offsetY)]);
-		this.editorObject.getModels()[0].setArrow(new kemia.model.Arrow(
+		var model = this.editorObject.getModels()[0];
+		if (model instanceof kemia.model.Reaction){
+			model.setArrow(new kemia.model.Arrow(
 				coords[0]));
+		}
 		this.editorObject.setModelsSilently(this.editorObject.getModels());
 		this.editorObject.dispatchChange();
 	} else if (this.activeCommand[kemia.controller.plugins.ArrowPlusEdit.COMMAND.EDIT_PLUS]) {

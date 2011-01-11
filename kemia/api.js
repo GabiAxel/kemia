@@ -48,7 +48,7 @@ goog.exportSymbol('kemia.io.mdl.readMolfile', kemia.io.mdl.readMolfile);
 goog.exportSymbol('kemia.io.mdl.readRxnfile', kemia.io.mdl.readRxnfile);
 goog.exportSymbol('kemia.io.mdl.writeRxnfile', kemia.io.mdl.writeRxnfile);
 goog.exportSymbol('kemia.io.smiles.SmilesParser.parse',
-		kemia.io.smiles.SmilesParser.parse);
+kemia.io.smiles.SmilesParser.parse);
 goog.exportSymbol('kemia.io.xhr', kemia.io.xhr);
 goog.exportSymbol('kemia.io.xhr.get', kemia.io.xhr.get);
 
@@ -68,42 +68,43 @@ goog.exportSymbol('kemia.model.Reaction.prototype.generatePluses', kemia.model.R
 
 // editor
 goog.exportSymbol('kemia.controller.ReactionEditor',
-		  kemia.controller.ReactionEditor);
+kemia.controller.ReactionEditor);
 goog.exportSymbol('kemia.controller.ReactionEditor.prototype.setModels',
-		  kemia.controller.ReactionEditor.prototype.setModels);
-goog.exportSymbol('kemia.controller.ReactionEditor.prototype.getModels', 
-		  kemia.controller.ReactionEditor.prototype.getModels);
+kemia.controller.ReactionEditor.prototype.setModels);
+goog.exportSymbol('kemia.controller.ReactionEditor.prototype.getModels',
+kemia.controller.ReactionEditor.prototype.getModels);
 goog.exportSymbol('kemia.controller.ReactionEditor.prototype.render',
-		  kemia.controller.ReactionEditor.prototype.render);
+kemia.controller.ReactionEditor.prototype.render);
 goog.exportSymbol('kemia.controller.ReactionEditor.prototype.registerPlugin',
-		  kemia.controller.ReactionEditor.prototype.registerPlugin);
-goog.exportSymbol('kemia.controller.ReactionEditor.EventType.CLEAR', 
-		  kemia.controller.ReactionEditor.EventType.CLEAR)
+kemia.controller.ReactionEditor.prototype.registerPlugin);
+goog.exportSymbol('kemia.controller.ReactionEditor.EventType.CHANGE',
+kemia.controller.ReactionEditor.EventType.CHANGE)
 
 // toolbar
-goog.exportSymbol('kemia.controller.ToolbarController', kemia.controller.ToolbarController);
+ goog.exportSymbol('kemia.controller.ToolbarController', kemia.controller.ToolbarController);
 goog.exportSymbol('kemia.controller.DefaultToolbar.makeDefaultMoleculeToolbar', kemia.controller.DefaultToolbar.makeDefaultMoleculeToolbar);
 
 // plugins
 goog.exportSymbol('kemia.controller.plugins.ArrowPlusEdit',
-		kemia.controller.plugins.ArrowPlusEdit);
+kemia.controller.plugins.ArrowPlusEdit);
 goog.exportSymbol('kemia.controller.DefaultToolbar.makeDefaultMoleculeToolbar',
-		kemia.controller.DefaultToolbar.makeDefaultMoleculeToolbar);
+kemia.controller.DefaultToolbar.makeDefaultMoleculeToolbar);
 goog.exportSymbol('kemia.controller.DefaultToolbar.makeDefaultReactionToolbar',
-		kemia.controller.DefaultToolbar.makeDefaultReactionToolbar);
+kemia.controller.DefaultToolbar.makeDefaultReactionToolbar);
 goog.exportSymbol('kemia.controller.plugins.AtomEdit',
-		kemia.controller.plugins.AtomEdit);
+kemia.controller.plugins.AtomEdit);
 goog.exportSymbol('kemia.controller.plugins.BondEdit',
-		kemia.controller.plugins.BondEdit);
+kemia.controller.plugins.BondEdit);
 goog.exportSymbol('kemia.controller.plugins.ClearEditor',
-		kemia.controller.plugins.ClearEditor);
+kemia.controller.plugins.ClearEditor);
 goog.exportSymbol('kemia.controller.plugins.Erase',
-		kemia.controller.plugins.Erase);
+kemia.controller.plugins.Erase);
 goog.exportSymbol('kemia.controller.plugins.MoleculeEdit',
-		kemia.controller.plugins.MoleculeEdit);
+kemia.controller.plugins.MoleculeEdit);
 goog.exportSymbol('kemia.controller.plugins.Move',
-		kemia.controller.plugins.Move);
+kemia.controller.plugins.Move);
 goog.exportSymbol('kemia.controller.plugins.UndoRedo',
-		kemia.controller.plugins.UndoRedo);
+kemia.controller.plugins.UndoRedo);
 goog.exportSymbol('kemia.controller.plugins.Zoom',
-		kemia.controller.plugins.Zoom);
+kemia.controller.plugins.Zoom);
+goog.exportSymbol('kemia.controller.plugins.View', kemia.controller.plugins.View);

@@ -332,12 +332,12 @@ kemia.controller.ReactionEditor.prototype.enablePlugins = function() {
 
 /**
  * Handle a change in the Editor. Marks the editor as modified, dispatches the
- * change event on the editable field
+ * change event
  */
 kemia.controller.ReactionEditor.prototype.handleChange = function() {
 	this.isModified_ = true;
 	this.isEverModified_ = true;
-
+	this.dispatchEvent(kemia.controller.ReactionEditor.EventType.CHANGE);
 };
 
 // /**
@@ -719,6 +719,7 @@ kemia.controller.ReactionEditor.prototype.execCommand = function(command,
 		// If the plugin supports the command, that means it handled the
 		// event and we shouldn't propagate to the other plugins.
 		var plugin = plugins[i];
+	
 		if (plugin.isEnabled(this) && plugin.isSupportedCommand(command)) {
 			result = plugin.execCommand.apply(plugin, args);
 			break;
@@ -837,8 +838,7 @@ kemia.controller.ReactionEditor.EventType = {
 	 */
 	BEFORECHANGE: goog.events.getUniqueId('beforechange'),
 	/**
-	 * Dispatched when the editor contents change, in FF only. Used for internal
-	 * resizing, please do not use.
+	 * Dispatched when the editor contents change.
 	 */
 	CHANGE: goog.events.getUniqueId('change'),
 	/**

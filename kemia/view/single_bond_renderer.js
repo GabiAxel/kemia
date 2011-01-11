@@ -37,6 +37,7 @@ kemia.view.SingleBondRenderer = function(graphics, opt_config) {
 };
 goog.inherits(kemia.view.SingleBondRenderer, kemia.view.BondRenderer);
 
+
 kemia.view.SingleBondRenderer.prototype.render = function(bond, transform,
 		bondPath) {
 	this.setTransform(transform);

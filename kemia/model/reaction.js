@@ -40,6 +40,18 @@ kemia.model.Reaction = function() {
 
 	/** @type {Array.<kemia.model.Pluse>} */
 	this.pluses = [];
+	
+	/** @type {string} */
+	this.reagentsText = '';
+	
+	/** @type {string} */
+	this.conditionsText = '';
+	
+	/** @type {boolean} */
+	this.isHiddenConditionsText = false;
+	
+	/** @type {boolean} */
+	this.isHiddenReagentsText = false;
 
 };
 
@@ -226,47 +238,39 @@ kemia.model.Reaction.prototype.setArrow = function(arrow) {
 };
 
 /**
- * setter delegates to arrow
+ * setter 
  * 
  * @param{string} text
  */
 kemia.model.Reaction.prototype.setReagentsText = function(text){
-	if(this.arrows.length>0){
-		this.arrows[0].setReagentsText(text);
-	}
+	this.reagentsText = text;
 };
 
 /**
- * getter delegates to arrow
+ * getter 
  * 
  * @return{string}
  */
 kemia.model.Reaction.prototype.getReagentsText = function(){
-	if(this.arrows.length>0){
-		return this.arrows[0].reagents_text;
-	}
+ 	return this.reagentsText;
 }
 
 /**
- * getter delegates to arrow
+ * getter 
  * 
  * @return{string}
  */
 kemia.model.Reaction.prototype.getConditionsText = function(){
-	if(this.arrows.length>0){
-		return this.arrows[0].conditions_text;
-	}
+	return this.conditionsText;
 }
 
 /**
- * setter delegates to arrow
+ * setter 
  * 
  * @param{string} text
  */
 kemia.model.Reaction.prototype.setConditionsText = function(text){
-	if (this.arrows.length>0){
-		this.arrows[0].setConditionsText(text);
-	}
+	this.conditionsText = text;
 }
 
 /**
