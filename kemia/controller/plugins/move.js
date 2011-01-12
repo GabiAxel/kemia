@@ -951,22 +951,24 @@ kemia.controller.plugins.Move.prototype.rotateMolecule = function(e, molecule) {
 
     var d = new goog.fx.Dragger(this.editorObject.getOriginalElement());
 
-    var trans;
-    if (this.editorObject.reactionRenderer.transform) {
-        trans = this.editorObject.reactionRenderer.transform;
-    } else {
-        trans = this.editorObject.reactionRenderer.moleculeRenderer.transform;
-    }
+    // var trans;
+    // if (this.editorObject.reactionRenderer.transform) {
+    //     trans = this.editorObject.reactionRenderer.transform;
+    // } else {
+    //     trans = this.editorObject.reactionRenderer.moleculeRenderer.transform;
+    // }
 
-    d._center = trans.transformCoords([molecule.getCenter()])[0];
+    // d._center = trans.transformCoords([molecule.getCenter()])[0];
+	d._center = molecule.getCenter();
     d._start = kemia.controller.ReactionEditor.getMouseCoords(e);
     d._start_angle = goog.math.angle(d._center.x, d._center.y, d._start.x,
     d._start.y);
     d._initDeltaX = null;
     d._initDeltaY = null;
     d._elements = molecule._elements;
-    d.molecule = molecule;
-    d.editor = this.editorObject;
+    d._molecule = molecule;
+    d._editor = this.editorObject;
+	d._renderer = this.editorObject.reactionRenderer.moleculeRenderer;
 
     d.addEventListener(goog.fx.Dragger.EventType.DRAG,
     function(e) {
@@ -974,15 +976,22 @@ kemia.controller.plugins.Move.prototype.rotateMolecule = function(e, molecule) {
         d._initDeltaY = d._initDeltaY || d.deltaY;
         var deltaX = d.deltaX - d._initDeltaX;
         var deltaY = d.deltaY - d._initDeltaY;
-        var new_angle = goog.math.angle(d._center.x, d._center.y, d._start.x
-        + deltaX, d._start.y + deltaY);
+        var new_angle = goog.math.angle(
+			d._center.x, 
+			d._center.y, 
+			d._start.x + deltaX, 
+			d._start.y + deltaY);
         d._degrees = new_angle - d._start_angle;
-        d._elements.setTransformation(0, 0, d._degrees, d._center.x, d._center.y);
+        // d._elements.setTransformation(0, 0, d._degrees, d._center.x, d._center.y);
+		d._molecule.rotate( - d._degrees, d._center);
+		d._elements.clear();
+		d._renderer.render(d._molecule, d._renderer.transform);
+		
     });
     d.addEventListener(goog.fx.Dragger.EventType.END,
     function(e) {
-        d.molecule.rotate( - d._degrees, d.molecule.getCenter());
-        d.editor.setModelsSilently(d.editor.getModels());
+        // d.molecule.rotate( - d._degrees, d.molecule.getCenter());
+        d._editor.setModelsSilently(d._editor.getModels());
         d.dispose();
     });
     d.startDrag(e);
