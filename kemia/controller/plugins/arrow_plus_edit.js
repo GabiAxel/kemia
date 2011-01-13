@@ -87,25 +87,25 @@ kemia.controller.plugins.ArrowPlusEdit.prototype.handleMouseDown = function(e) {
 
 	if (this.activeCommand[kemia.controller.plugins.ArrowPlusEdit.COMMAND.EDIT_ARROW]) {
 		this.editorObject.dispatchBeforeChange();
-		var trans = this.editorObject.reactionRenderer.moleculeRenderer.transform
-				.createInverse();
-		var coords = trans.transformCoords([new goog.math.Coordinate(
-				e.offsetX, e.offsetY)]);
+		var pos = kemia.controller.ReactionEditor
+				.getMouseCoords(e);
+		var coord = this.editorObject.reactionRenderer.transform.createInverse()
+						.transformCoords([pos])[0];
 		var model = this.editorObject.getModels()[0];
 		if (model instanceof kemia.model.Reaction){
 			model.setArrow(new kemia.model.Arrow(
-				coords[0]));
+				coord));
 		}
 		this.editorObject.setModelsSilently(this.editorObject.getModels());
 		this.editorObject.dispatchChange();
 	} else if (this.activeCommand[kemia.controller.plugins.ArrowPlusEdit.COMMAND.EDIT_PLUS]) {
 		this.editorObject.dispatchBeforeChange();
-		var trans = this.editorObject.reactionRenderer.moleculeRenderer.transform
-				.createInverse();
-		var coords = trans.transformCoords([new goog.math.Coordinate(
-				e.offsetX, e.offsetY)]);
+		var pos = kemia.controller.ReactionEditor
+				.getMouseCoords(e);
+		var coord = this.editorObject.reactionRenderer.transform.createInverse()
+						.transformCoords([pos])[0];
 		this.editorObject.getModels()[0]
-				.addPlus(new kemia.model.Plus(coords[0]));
+				.addPlus(new kemia.model.Plus(coord));
 		this.editorObject.setModelsSilently(this.editorObject.getModels());
 		this.editorObject.dispatchChange();
 	}
