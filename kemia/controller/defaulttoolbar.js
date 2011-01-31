@@ -109,8 +109,6 @@ kemia.controller.DefaultToolbar.makeZoomButtons = function(buttons) {
     kemia.controller.plugins.Zoom.COMMAND.ZOOM_OUT, 'Zoom Out', '',
     goog.getCssName('tr-icon') + ' ' + goog.getCssName('tr-zoom-out')));
 
-    buttons.push(new goog.ui.ToolbarSeparator());
-
     var reagents_button = kemia.controller.ToolbarFactory.makeToggleButton(
     kemia.controller.plugins.View.COMMAND.SHOW_REAGENTS, 
 	'toggle visibility of Reagents text', 
@@ -125,6 +123,8 @@ kemia.controller.DefaultToolbar.makeZoomButtons = function(buttons) {
 	'Conditions');
     conditions_button.queryable = true;
     buttons.push(conditions_button);
+
+    buttons.push(new goog.ui.ToolbarSeparator());
 
     return buttons;
 };
