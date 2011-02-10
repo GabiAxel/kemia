@@ -197,17 +197,7 @@ kemia.controller.DefaultToolbar.makeAtomBondTemplateButtons = function(buttons) 
         style: 'color:purple'
     },
     'I')), true);
-    atom_menu.addChild(new goog.ui.MenuSeparator(), true);
-    atom_menu.addChild(new goog.ui.Option(goog.dom.createDom(
-    goog.dom.TagName.DIV, {
-        style: 'color:black'
-    },
-    'R1')), true);
-    atom_menu.addChild(new goog.ui.Option(goog.dom.createDom(
-    goog.dom.TagName.DIV, {
-        style: 'color:black'
-    },
-    'R2')), true);
+
     // atom_menu.addChild(new goog.ui.Option('...'), true);//TTD periodic table
     atom_select.setMenu(atom_menu);
     buttons.push(atom_select);
