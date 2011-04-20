@@ -47,7 +47,7 @@ kemia.view.ReactionRenderer.prototype.render = function(reaction) {
 	if(!this.transform){
 		if (molecules.length>0){
 			var box = this.boundingBox(molecules);
-			var m = this.config.get("margin");
+			var m = this.config.get("reaction_margin");
 			box.expand(m, m, m, m);
 			this.setTransform(this.buildTransform(box));
 		} else {
@@ -109,5 +109,5 @@ kemia.view.ReactionRenderer.prototype.setScaleFactor = function(scale){
  * A default configuration for renderer
  */
 kemia.view.ReactionRenderer.defaultConfig = {
-	'margin' : 4
+	'reaction_margin' : 5
 };
