@@ -49,6 +49,11 @@ kemia.controller.plugins.MoleculeEdit.prototype.isSupportedCommand = function(
 };
 
 /** @inheritDoc */
+kemia.controller.Plugin.prototype.isSilentCommand = function(command) {
+	return command == kemia.controller.plugins.MoleculeEdit.COMMAND;
+};
+
+/** @inheritDoc */
 kemia.controller.plugins.MoleculeEdit.prototype.getTrogClassId = goog.functions
 		.constant(kemia.controller.plugins.MoleculeEdit.COMMAND);
 
