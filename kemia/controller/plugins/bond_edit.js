@@ -174,7 +174,7 @@ kemia.controller.plugins.BondEdit.prototype.handleMouseMove = function(e) {
 	if (this.bond_type && !this._dragging) {
 		var target = this.editorObject.findTarget(e);
 		this.editorObject.clearSelected();
-		this.editorObject.getOriginalElement().style.cursor = 'default';
+		goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-editor', false)
 		if (e.currentTarget.highlightGroup) {
 			e.currentTarget.highlightGroup.clear();
 		}
@@ -182,7 +182,7 @@ kemia.controller.plugins.BondEdit.prototype.handleMouseMove = function(e) {
 
 		if (target instanceof kemia.model.Atom) {
 			this.editorObject.addSelected(target);
-			this.editorObject.getOriginalElement().style.cursor = 'pointer';
+			goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-editor', true)
 			if (!e.currentTarget.highlightGroup) {
 				e.currentTarget.highlightGroup = this.highlightAtom(target);
 			} else {
@@ -192,7 +192,7 @@ kemia.controller.plugins.BondEdit.prototype.handleMouseMove = function(e) {
 			return true;
 		} else if (target instanceof kemia.model.Bond) {
 			this.editorObject.addSelected(target);
-			this.editorObject.getOriginalElement().style.cursor = 'pointer';
+			goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-editor', true)
 			if (!e.currentTarget.highlightGroup) {
 				e.currentTarget.highlightGroup = this.highlightBond(target);
 			} else {
@@ -356,6 +356,7 @@ kemia.controller.plugins.BondEdit.prototype.highlightBond = function(bond,
  */
 kemia.controller.plugins.BondEdit.prototype.resetState = function() {
 	this.bond_type = undefined;
+	goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-editor', false)
 };
 
 /** @inheritDoc */

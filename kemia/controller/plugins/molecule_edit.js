@@ -207,7 +207,7 @@ kemia.controller.plugins.MoleculeEdit.prototype.handleMouseMove = function(e) {
 	if (this.template) {
 		var target = this.editorObject.findTarget(e);
 		this.editorObject.clearSelected();
-		this.editorObject.getOriginalElement().style.cursor = 'default';
+		goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-editor', false)
 		if (e.currentTarget.highlightGroup) {
 			e.currentTarget.highlightGroup.clear();
 		}
@@ -215,7 +215,7 @@ kemia.controller.plugins.MoleculeEdit.prototype.handleMouseMove = function(e) {
 
 		if (target instanceof kemia.model.Atom) {
 			this.editorObject.addSelected(target);
-			this.editorObject.getOriginalElement().style.cursor = 'pointer';
+			goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-editor', true)
 			if (!e.currentTarget.highlightGroup) {
 				e.currentTarget.highlightGroup = this.highlightAtom(target);
 			} else {
@@ -225,7 +225,7 @@ kemia.controller.plugins.MoleculeEdit.prototype.handleMouseMove = function(e) {
 			return true;
 		} else if (target instanceof kemia.model.Bond) {
 			this.editorObject.addSelected(target);
-			this.editorObject.getOriginalElement().style.cursor = 'pointer';
+			goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-editor', true)
 			if (!e.currentTarget.highlightGroup) {
 				e.currentTarget.highlightGroup = this.highlightBond(target);
 			} else {
@@ -454,6 +454,7 @@ kemia.controller.plugins.MoleculeEdit.prototype.addTemplateToAtom = function(
  */
 kemia.controller.plugins.MoleculeEdit.prototype.resetState = function() {
 	this.template = undefined;
+	goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-editor', false)
 };
 
 /** @inheritDoc */

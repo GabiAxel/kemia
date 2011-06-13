@@ -52,8 +52,6 @@ kemia.controller.plugins.Move.COMMAND = {
 kemia.controller.plugins.Move.SUPPORTED_COMMANDS_ = goog.object
 .transpose(kemia.controller.plugins.Move.COMMAND);
 
-kemia.controller.plugins.Move.ROTATE_CURSOR_STYLE = 'url("../../elements/images/rotate-cursor-32.png") 16 16,  pointer';
-
 /** @inheritDoc */
 kemia.controller.plugins.Move.prototype.isSupportedCommand = function(command) {
     return command in kemia.controller.plugins.Move.SUPPORTED_COMMANDS_;
@@ -69,6 +67,7 @@ kemia.controller.plugins.Move.prototype.getTrogClassId = goog.functions
 kemia.controller.plugins.Move.prototype.resetState = function() {
     this.isActive[kemia.controller.plugins.Move.COMMAND.MOVE] = false;
     this.isActive[kemia.controller.plugins.Move.COMMAND.ROTATE] = false;
+	goog.dom.classes.remove(this.editorObject.getOriginalElement(), 'kemia-rotator', 'kemia-mover')
 };
 
 /**
@@ -90,7 +89,7 @@ kemia.controller.plugins.Move.prototype.handleMouseMove = function(e) {
     && !this.isDragging) {
         var target = this.editorObject.findTarget(e);
         this.editorObject.clearSelected();
-        this.editorObject.getOriginalElement().style.cursor = 'default';
+		goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-rotator', false)
         if (e.currentTarget.highlightGroup) {
             e.currentTarget.highlightGroup.clear();
         }
@@ -98,7 +97,7 @@ kemia.controller.plugins.Move.prototype.handleMouseMove = function(e) {
             //rotate
             if (target instanceof kemia.model.Molecule) {
                 this.editorObject.addSelected(target);
-                this.editorObject.getOriginalElement().style.cursor = kemia.controller.plugins.Move.ROTATE_CURSOR_STYLE;
+				goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-rotator', true)
                 e.currentTarget.highlightGroup = this.highlightMolecule(
                 target, e.currentTarget.highlightGroup);
                 return true;
@@ -107,7 +106,7 @@ kemia.controller.plugins.Move.prototype.handleMouseMove = function(e) {
             //move
             if (target instanceof kemia.model.Atom) {
                 this.editorObject.addSelected(target);
-                this.editorObject.getOriginalElement().style.cursor = 'move';
+				goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-mover', true)
                 e.currentTarget.highlightGroup = this.highlightAtom(target,
                 e.currentTarget.highlightGroup);
                 return true;
@@ -116,14 +115,14 @@ kemia.controller.plugins.Move.prototype.handleMouseMove = function(e) {
                 if (bond.source.bonds.getValues().length == 1
                 || bond.target.bonds.getValues().length == 1) {
                     this.editorObject.addSelected(target);
-                    this.editorObject.getOriginalElement().style.cursor = 'move';
+					goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-mover', true)
                     e.currentTarget.highlightGroup = this.highlightBond(
                     target, e.currentTarget.highlightGroup);
                 }
                 return true;
             } else if (target instanceof kemia.model.Molecule) {
                 this.editorObject.addSelected(target);
-                this.editorObject.getOriginalElement().style.cursor = 'move';
+				goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-mover', true)
 
                 e.currentTarget.highlightGroup = this.highlightMolecule(
                 target, e.currentTarget.highlightGroup);
@@ -132,7 +131,7 @@ kemia.controller.plugins.Move.prototype.handleMouseMove = function(e) {
             } else if (target instanceof kemia.model.Arrow) {
                 this.editorObject.addSelected(target);
                 if (!e.shiftKey) {
-                    this.editorObject.getOriginalElement().style.cursor = 'move';
+					goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-mover', true)
 
                     e.currentTarget.highlightGroup = this.highlightArrow(
                     target, e.currentTarget.highlightGroup);
@@ -142,15 +141,15 @@ kemia.controller.plugins.Move.prototype.handleMouseMove = function(e) {
             } else if (target instanceof kemia.model.Plus) {
                 this.editorObject.addSelected(target);
                 if (!e.shiftKey) {
-                    this.editorObject.getOriginalElement().style.cursor = 'move';
+					goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-mover', true)
 
                     e.currentTarget.highlightGroup = this.highlightPlus(
                     target, e.currentTarget.highlightGroup);
 
                     return true;
                 }
-            } else if (!target) {
-                this.editorObject.getOriginalElement().style.cursor = 'all-scroll';
+            } else if (!target) {	
+				goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-mover', true)
                 return true;
             }
         }
@@ -173,7 +172,7 @@ kemia.controller.plugins.Move.prototype.handleMouseDown = function(e) {
             if (target instanceof kemia.model.Molecule) {
                 var molecule = target;
                 this.editorObject.dispatchBeforeChange();
-                this.editorObject.getOriginalElement().style.cursor = kemia.controller.plugins.Move.ROTATE_CURSOR_STYLE;
+				goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-rotator', true)
                 this.rotateMolecule(e, target);
                 this.editorObject.dispatchChange();
                 return true;
@@ -202,7 +201,7 @@ kemia.controller.plugins.Move.prototype.handleMouseDown = function(e) {
                 var molecule = target;
                 this.editorObject.dispatchBeforeChange();
                 if (e.shiftKey) {
-                    this.editorObject.getOriginalElement().style.cursor = kemia.controller.plugins.Move.ROTATE_CURSOR_STYLE;
+					goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-rotator', true)
                     this.rotateMolecule(e, target);
                 } else {
                     this.dragMolecule(e, target);

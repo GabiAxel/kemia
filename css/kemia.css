@@ -384,7 +384,7 @@ See the COPYING file for details.
 .goog-menu-button-dropdown {
   width: 7px;
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
+  background: url(../images/editortoolbar.png) no-repeat -388px 0;
   vertical-align: top;
 }
 
@@ -730,7 +730,7 @@ See the COPYING file for details.
 .goog-toolbar-menu-button-dropdown {
   width: 7px;
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0; 
+  background: url(../images/editortoolbar.png) no-repeat -388px 0; 
   vertical-align: top;
 
 }
@@ -865,8 +865,20 @@ See the COPYING file for details.
 	background-position: -142px;
 }
 
-kemia-eraser {
+.kemia-eraser {
+	cursor: url(../images/erase-cursor-32.png), pointer;
+}
+
+.kemia-rotator {
+	cursor: url(../images/rotate-cursor-32.png), pointer;
+}
+
+.kemia-mover {
 	cursor: move;
+}
+
+.kemia-editor {
+	cursor: pointer;
 }
 
 

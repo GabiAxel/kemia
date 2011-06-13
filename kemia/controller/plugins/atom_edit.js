@@ -96,6 +96,7 @@ kemia.controller.plugins.AtomEdit.prototype.getKeyboardShortcuts = function() {
  */
 kemia.controller.plugins.AtomEdit.prototype.resetState = function() {
 	this.symbol = undefined;
+	goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-editor', false)
 };
 
 /**
@@ -169,7 +170,7 @@ kemia.controller.plugins.AtomEdit.prototype.handleKeyboardShortcut = function(e)
 kemia.controller.plugins.AtomEdit.prototype.handleMouseMove = function(e) {
 	if (this.symbol) {
 		this.editorObject.clearSelected();
-		this.editorObject.getOriginalElement().style.cursor = 'default';
+		goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-editor', false)
 		var target = this.editorObject.findTarget(e);
 		if (e.currentTarget.highlightGroup) {
 			e.currentTarget.highlightGroup.clear();
@@ -177,7 +178,7 @@ kemia.controller.plugins.AtomEdit.prototype.handleMouseMove = function(e) {
 
 		if (target instanceof kemia.model.Atom) {
 			this.editorObject.addSelected(target);
-			this.editorObject.getOriginalElement().style.cursor = 'pointer';
+			goog.dom.classes.enable(this.editorObject.getOriginalElement(), 'kemia-editor', true)
 			if (!e.currentTarget.highlightGroup) {
 				e.currentTarget.highlightGroup = this.highlightAtom(target);
 			} else {
